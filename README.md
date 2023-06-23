@@ -51,3 +51,34 @@ export default configureStore({
 })
 在组件里通过：store.getState().count;获取参数 其它内容不变
 ```
+
+## 4.求和案例react-redux基本使用
+1. 明确两个概念：
+- 1. `ui`组件：不能使用任何`redux`的`api`，只负责页面的呈现，交互
+- 2. 容器组件:负责和`redux`的通信，将结果交给`ui`组件
+2. 如何创建一个容器组件--靠`react-redux的connect`函数
+- `connect(函数1，函数2)(ui组件)` 函数1和函数2返回值是一个对象。
+3. 备注：容器组件中的`store`是靠`props`传进去的，而不是在容器中直接引用
+4. 备注：函数2 也可以是一个对象
+
+## 5.求和案例——react_redux优化
+1. 容器组件和`ui`组件整合一个文件
+2. 无需自己给容器组件传递store,给`<App/>`包裹一个`<Provider store={store}>`即可
+3. 使用了`react-redux`后也不用再自己检查`redux`中状态的改变了，容器组件开业自动完成这个工作
+4. `mapDispatchToProps`也可以简单的写成一个对象
+5. 一个组件要和`redux`打交道要走几步
+- 定义好`ui`组件----不暴露
+- 引入`connect`生成一个容器组件，并暴露，写法如下
+```
+connect(
+    state =>({key:value}), //映射状态
+    {key:xxxxxAction} // 映射操作状态的方法
+)(ui组件)
+```
+- 在`ui`组件中通过`this.props.xxxxx`读取和操作状态
+
+## 6.求和案例 react-redux数据共享版
+1. 定义一个`Person`组件,和`Count`组件通过`redux`共享数据
+2. 为`Person`组件写:`reducer`,`action `配置`constant`常量
+3. 重点 `Person`和`reducer`和`Count`的`reducer` 要使用`combineReducers`进行合并，ps：在`react18`中不是这样写的，可以直接写多个。
+4. 交给`store`的是总`reducer` 最后注意在组件中取出状态的时候，记得取到位

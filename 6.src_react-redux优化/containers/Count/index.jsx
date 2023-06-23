@@ -3,7 +3,7 @@ import {
     createIncrementAction,
     createDncrementAction,
     createIncrementAsyncAction
-} from '../../redux/actions/count'
+} from '../../redux/count_action'
 // 引入connect用于连接 UI组件和 redux
 import {connect} from 'react-redux'
 
@@ -43,8 +43,8 @@ class Count extends Component {
         //console.log(ss);
         return (
             <div>
-                <h1>我是求和组件,下面的人数是：{this.props.renshu}</h1>
-                <h2>当前求和为:{ss}</h2>
+
+                <h1>当前求和为:{ss}</h1>
                 <select ref={c => { this.selectnumber = c }}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -62,9 +62,7 @@ class Count extends Component {
 
 // 暴露组件
 export default connect(
-    state =>({
-        count:state.count,
-        renshu:state.people.length}),
+    state =>({count:state.count}),
 //     dispatch =>({
 //         jia:(number)=>{dispatch( createIncrementAction(number))},
 //         jian:(number)=>{dispatch( createDncrementAction(number))},
