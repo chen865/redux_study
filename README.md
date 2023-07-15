@@ -82,14 +82,3 @@ connect(
 2. 为`Person`组件写:`reducer`,`action `配置`constant`常量
 3. 重点 `Person`和`reducer`和`Count`的`reducer` 要使用`combineReducers`进行合并，ps：在`react18`中不是这样写的，可以直接写多个。
 4. 交给`store`的是总`reducer` 最后注意在组件中取出状态的时候，记得取到位
-
-## 7.求和案例react-redux开发者工具的使用
-1. npm add redux-devtools-extension 添加开发工具
-2. store中进行配置
-```
-    //引入redux工具
-    import {composeWithDevTools} from 'redux-devtools-extension'
-    const store = createStore(allReducer,composeWithDevTools(applyMiddleware(thunk)))
-
-```
-ps: 上面内容为旧版本`react`,本项目现在为`react18`,可以直接使用该工具，并未配置，直接在浏览器里添加了`Redux DevTools`工具，启动项目后，图表直接就变亮了。

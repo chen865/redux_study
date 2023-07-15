@@ -2,8 +2,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import countReducer from './reducers/count'
 import personReducer from './reducers/person'
-// //引入redux工具
-// import {composeWithDevTools} from 'redux-devtools-extension'
 
 // 暴露store
 export default configureStore({
